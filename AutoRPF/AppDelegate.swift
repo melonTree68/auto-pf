@@ -1,6 +1,5 @@
 import AppKit
 
-@main
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControllerDelegate {
     private let store = SettingsStore()
@@ -35,12 +34,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
     private func configureStatusItem() {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         item.button?.toolTip = "AutoRPF"
-        if let image = NSImage(named: "StatusIcon") {
-            image.size = NSSize(width: 18, height: 18)
-            item.button?.image = image
-        } else {
-            item.button?.title = "RPF"
-        }
+        let image = NSImage(systemSymbolName: "arrow.left.arrow.right.circle", accessibilityDescription: "AutoRPF")
+            ?? NSImage(named: "StatusIcon")
+        image?.isTemplate = true
+        image?.size = NSSize(width: 18, height: 18)
+        item.button?.image = image
+        item.button?.title = image == nil ? "RPF" : ""
         statusItem = item
     }
 

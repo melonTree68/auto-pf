@@ -16,6 +16,7 @@
 		1A0000010000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000007 /* Assets.xcassets */; };
 		1A0000010000000000000008 /* AutoRPFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000008 /* AutoRPFTests.swift */; };
 		1A0000010000000000000009 /* AutoRPF.app in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0000210000000000000001 /* AutoRPF.app */; };
+		1A0000010000000000000010 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000010 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		1A0000110000000000000007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A0000110000000000000008 /* AutoRPFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoRPFTests.swift; sourceTree = "<group>"; };
 		1A0000110000000000000009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A0000110000000000000010 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		1A0000210000000000000001 /* AutoRPF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoRPF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A0000210000000000000002 /* AutoRPFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoRPFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0000110000000000000001 /* AppDelegate.swift */,
+				1A0000110000000000000010 /* main.swift */,
 				1A0000110000000000000002 /* Models.swift */,
 				1A0000110000000000000003 /* SSHConfigParser.swift */,
 				1A0000110000000000000004 /* TunnelManager.swift */,
@@ -207,6 +210,7 @@
 				1A0000010000000000000004 /* TunnelManager.swift in Sources */,
 				1A0000010000000000000005 /* SettingsStore.swift in Sources */,
 				1A0000010000000000000006 /* SettingsWindowController.swift in Sources */,
+				1A0000010000000000000010 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
