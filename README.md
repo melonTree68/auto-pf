@@ -13,10 +13,11 @@ ssh -N -R 127.0.0.1:<remote-port>:127.0.0.1:<local-port> <target>
 ## Features
 
 - Menu bar control for starting and stopping one active reverse SSH tunnel.
-- SSH target discovery from `~/.ssh/config`.
+- SSH target discovery from `~/.ssh/config`, grouped under an SSH Targets submenu.
 - Custom SSH target configuration.
 - Editable local and remote ports.
 - Optional port sync mode, where the remote port mirrors the local port.
+- Optional display of the running SSH target name next to the menu bar icon.
 - Login startup toggle using the modern macOS `SMAppService` API.
 - Settings window with temporary Dock presence: AutoRPF normally stays out of the Dock, appears there while Settings is open, then returns to menu-bar-only mode after Settings closes.
 
@@ -53,7 +54,7 @@ Run the unit tests with:
 xcodebuild -project AutoRPF.xcodeproj -scheme AutoRPF -configuration Debug -derivedDataPath .build/DerivedData test
 ```
 
-The tests cover SSH config parsing, port syncing, and SSH command argument construction.
+The tests cover SSH config parsing, port syncing, settings persistence, and SSH command argument construction.
 
 ## Status
 

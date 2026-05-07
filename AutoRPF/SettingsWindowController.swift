@@ -15,6 +15,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
     private let remotePortField = NSTextField()
     private let syncPortsButton = NSButton(checkboxWithTitle: "Sync ports", target: nil, action: nil)
     private let launchAtLoginButton = NSButton(checkboxWithTitle: "Open AutoRPF at login", target: nil, action: nil)
+    private let showRunningTargetButton = NSButton(checkboxWithTitle: "Show running target in menu bar", target: nil, action: nil)
     private let customHostField = NSTextField()
     private let customUserField = NSTextField()
     private let customSSHPortField = NSTextField()
@@ -23,7 +24,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
     init(store: SettingsStore) {
         self.store = store
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 440, height: 330),
+            contentRect: NSRect(x: 0, y: 0, width: 440, height: 360),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
@@ -78,6 +79,8 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
         syncPortsButton.action = #selector(syncChanged)
         launchAtLoginButton.target = self
         launchAtLoginButton.action = #selector(loginItemChanged)
+        showRunningTargetButton.target = self
+        showRunningTargetButton.action = #selector(showRunningTargetChanged)
 
         validationLabel.textColor = .systemRed
         validationLabel.lineBreakMode = .byWordWrapping
@@ -101,6 +104,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
             form,
             syncPortsButton,
             launchAtLoginButton,
+            showRunningTargetButton,
             validationLabel
         ])
         stack.orientation = .vertical
@@ -129,6 +133,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
         customSSHPortField.stringValue = custom.port.map(String.init) ?? ""
 
         launchAtLoginButton.state = SMAppService.mainApp.status == .enabled ? .on : .off
+        showRunningTargetButton.state = store.showRunningTargetInMenuBar ? .on : .off
         validationLabel.stringValue = ""
     }
 
@@ -198,5 +203,10 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
             launchAtLoginButton.state = SMAppService.mainApp.status == .enabled ? .on : .off
             validationLabel.stringValue = error.localizedDescription
         }
+    }
+
+    @objc private func showRunningTargetChanged() {
+        store.showRunningTargetInMenuBar = showRunningTargetButton.state == .on
+        delegate?.settingsDidChange()
     }
 }

@@ -35,15 +35,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         item.button?.toolTip = "AutoRPF"
         let image = NSImage(systemSymbolName: "arrow.left.arrow.right.circle", accessibilityDescription: "AutoRPF")
-            ?? NSImage(named: "StatusIcon")
         image?.isTemplate = true
         image?.size = NSSize(width: 18, height: 18)
         item.button?.image = image
-        item.button?.title = image == nil ? "RPF" : ""
+        item.button?.imagePosition = .imageLeft
         statusItem = item
+        updateStatusItemPresentation()
     }
 
     private func rebuildMenu() {
+        updateStatusItemPresentation()
+
         let menu = NSMenu()
         menu.addItem(disabledItem(title: statusTitle))
         menu.addItem(disabledItem(title: portTitle))
@@ -59,27 +61,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         menu.addItem(toggleItem)
 
         menu.addItem(.separator())
-        menu.addItem(disabledItem(title: "SSH Targets"))
-        for target in configTargets {
-            let item = NSMenuItem(title: target.alias, action: #selector(selectConfigTarget(_:)), keyEquivalent: "")
-            item.target = self
-            item.representedObject = target.alias
-            item.state = selectedConfigAlias == target.alias ? .on : .off
-            menu.addItem(item)
-        }
-
-        let customItem = NSMenuItem(title: customTargetTitle, action: #selector(selectCustomTarget), keyEquivalent: "")
-        customItem.target = self
-        customItem.state = store.selectedTargetKind == "custom" ? .on : .off
-        menu.addItem(customItem)
-
-        let refreshItem = NSMenuItem(title: "Refresh SSH Config", action: #selector(refreshTargetsAction), keyEquivalent: "")
-        refreshItem.target = self
-        menu.addItem(refreshItem)
+        let targetsItem = NSMenuItem(title: "SSH Targets", action: nil, keyEquivalent: "")
+        targetsItem.submenu = buildTargetsMenu()
+        menu.addItem(targetsItem)
 
         menu.addItem(.separator())
-        let settingsItem = NSMenuItem(title: "Settings...", action: #selector(openSettings), keyEquivalent: ",")
+        let settingsItem = NSMenuItem(title: "Settings", action: #selector(openSettings), keyEquivalent: ",")
         settingsItem.target = self
+        settingsItem.image = nil
         menu.addItem(settingsItem)
 
         let quitItem = NSMenuItem(title: "Quit AutoRPF", action: #selector(quit), keyEquivalent: "q")
@@ -87,6 +76,49 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         menu.addItem(quitItem)
 
         statusItem?.menu = menu
+    }
+
+    private func buildTargetsMenu() -> NSMenu {
+        let menu = NSMenu()
+
+        if configTargets.isEmpty {
+            menu.addItem(disabledItem(title: "No SSH config targets"))
+        } else {
+            for target in configTargets {
+                let item = NSMenuItem(title: target.alias, action: #selector(selectConfigTarget(_:)), keyEquivalent: "")
+                item.target = self
+                item.representedObject = target.alias
+                item.state = selectedConfigAlias == target.alias ? .on : .off
+                menu.addItem(item)
+            }
+        }
+
+        menu.addItem(.separator())
+
+        let customItem = NSMenuItem(title: customTargetTitle, action: #selector(selectCustomTarget), keyEquivalent: "")
+        customItem.target = self
+        customItem.state = store.selectedTargetKind == "custom" ? .on : .off
+        menu.addItem(customItem)
+
+        menu.addItem(.separator())
+
+        let refreshItem = NSMenuItem(title: "Refresh SSH Config", action: #selector(refreshTargetsAction), keyEquivalent: "")
+        refreshItem.target = self
+        menu.addItem(refreshItem)
+
+        return menu
+    }
+
+    private func updateStatusItemPresentation() {
+        guard let statusItem else { return }
+
+        if store.showRunningTargetInMenuBar, let runningTargetName {
+            statusItem.length = NSStatusItem.variableLength
+            statusItem.button?.title = " \(runningTargetName)"
+        } else {
+            statusItem.length = NSStatusItem.squareLength
+            statusItem.button?.title = ""
+        }
     }
 
     private var currentTarget: TunnelTarget {
@@ -107,6 +139,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
             return true
         }
         return false
+    }
+
+    private var runningTargetName: String? {
+        if case .running(let targetName, _) = tunnelManager.state {
+            return targetName
+        }
+        return nil
     }
 
     private var statusTitle: String {

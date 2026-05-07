@@ -6,8 +6,10 @@
 - One active reverse SSH tunnel at a time.
 - Ports default to `7890` and can be synced.
 - SSH targets are discovered from `~/.ssh/config`.
+- SSH targets are grouped under a submenu in the menu bar menu.
 - Custom SSH target fields are available in Settings.
 - Login startup uses the macOS 13+ `SMAppService` API.
+- Settings can show the running SSH target name next to the menu bar icon.
 - Settings window temporarily shows AutoRPF in the Dock and returns to menu-bar-only mode after closing.
 - App icon generated with the image model and stored in `Assets.xcassets`.
 

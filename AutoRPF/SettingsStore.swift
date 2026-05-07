@@ -10,6 +10,7 @@ final class SettingsStore {
         static let customSSHPort = "customSSHPort"
         static let selectedTargetAlias = "selectedTargetAlias"
         static let selectedTargetKind = "selectedTargetKind"
+        static let showRunningTargetInMenuBar = "showRunningTargetInMenuBar"
     }
 
     private let defaults: UserDefaults
@@ -63,5 +64,10 @@ final class SettingsStore {
     var selectedTargetAlias: String? {
         get { defaults.string(forKey: Key.selectedTargetAlias) }
         set { defaults.set(newValue, forKey: Key.selectedTargetAlias) }
+    }
+
+    var showRunningTargetInMenuBar: Bool {
+        get { defaults.bool(forKey: Key.showRunningTargetInMenuBar) }
+        set { defaults.set(newValue, forKey: Key.showRunningTargetInMenuBar) }
     }
 }

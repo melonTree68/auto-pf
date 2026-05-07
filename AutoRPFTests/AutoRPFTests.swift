@@ -2,6 +2,20 @@ import XCTest
 @testable import AutoRPF
 
 final class AutoRPFTests: XCTestCase {
+    func testShowRunningTargetInMenuBarDefaultsToFalseAndPersists() {
+        let suiteName = "AutoRPFTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+
+        var store = SettingsStore(defaults: defaults)
+        XCTAssertFalse(store.showRunningTargetInMenuBar)
+
+        store.showRunningTargetInMenuBar = true
+        store = SettingsStore(defaults: defaults)
+
+        XCTAssertTrue(store.showRunningTargetInMenuBar)
+    }
+
     func testSSHConfigParserSkipsPatternsAndKeepsConcreteAliases() {
         let config = """
         Host *
