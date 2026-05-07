@@ -50,6 +50,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         menu.addItem(disabledItem(title: statusTitle))
         menu.addItem(disabledItem(title: portTitle))
         menu.addItem(.separator())
+        menu.showsStateColumn = false
 
         let toggleItem = NSMenuItem(
             title: isRunning ? "Stop Tunnel" : "Start Tunnel",
@@ -68,7 +69,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         menu.addItem(.separator())
         let settingsItem = NSMenuItem(title: "Settings", action: #selector(openSettings), keyEquivalent: ",")
         settingsItem.target = self
-        settingsItem.image = nil
+        removeMenuImages(from: settingsItem)
         menu.addItem(settingsItem)
 
         let quitItem = NSMenuItem(title: "Quit AutoRPF", action: #selector(quit), keyEquivalent: "q")
@@ -88,7 +89,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
                 let item = NSMenuItem(title: target.alias, action: #selector(selectConfigTarget(_:)), keyEquivalent: "")
                 item.target = self
                 item.representedObject = target.alias
-                item.state = selectedConfigAlias == target.alias ? .on : .off
+                item.state = store.selectedTargetKind == "config" && selectedConfigAlias == target.alias ? .on : .off
                 menu.addItem(item)
             }
         }
@@ -234,5 +235,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
         item.isEnabled = false
         return item
+    }
+
+    private func removeMenuImages(from item: NSMenuItem) {
+        item.image = nil
+        item.onStateImage = nil
+        item.offStateImage = nil
+        item.mixedStateImage = nil
     }
 }
