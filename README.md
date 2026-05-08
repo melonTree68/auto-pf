@@ -13,7 +13,6 @@ It is useful when you often need the same remote port forward and want a simple 
 ## Requirements
 
 - macOS 13 or newer.
-- An SSH target that allows reverse port forwarding.
 
 ## What It Does
 
@@ -27,14 +26,7 @@ It is useful when you often need the same remote port forward and want a simple 
 ## Build From Source
 
 ```bash
-open AutoRPF.xcodeproj
-```
-
-Select the `AutoRPF` scheme, choose `My Mac`, and run. Or build from Terminal:
-
-```bash
-xcodebuild -project AutoRPF.xcodeproj -scheme AutoRPF -configuration Debug -derivedDataPath .build/DerivedData build
-open .build/DerivedData/Build/Products/Debug/AutoRPF.app
+make build-release
 ```
 
 After launch, AutoRPF appears in the macOS menu bar.
