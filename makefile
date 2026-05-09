@@ -1,10 +1,10 @@
 .PHONY: all rebuild update-app-icon build-release package-release
 .DEFAULT_GOAL := all
 
-DERIVED_DATA := /Users/zhijiechen/Documents/autorpf/.build/DerivedData
-RELEASE_DIR := /Users/zhijiechen/Documents/autorpf/.build/release
+DERIVED_DATA := /Users/zhijiechen/Documents/auto-rpf/.build/DerivedData
+RELEASE_DIR := /Users/zhijiechen/Documents/auto-rpf/.build/release
 RELEASE_APP := $(DERIVED_DATA)/Build/Products/Release/AutoRPF.app
-VERSION ?= $(shell tag=$$(git describe --tags --exact-match 2>/dev/null); if [ -n "$$tag" ]; then printf "%s" "$${tag#v}"; else printf "dev"; fi)
+VERSION ?= $(shell tag=$$(git describe --tags --exact-match 2>/dev/null); if [ -n "$$tag" ]; then printf "%s" "$${tag\#v}"; else printf "dev"; fi)
 PACKAGE := $(RELEASE_DIR)/AutoRPF-v$(VERSION)-macos.zip
 ICON ?=
 ICON_PATH := $(if $(ICON),$(abspath $(ICON)),)
