@@ -34,7 +34,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
     private func configureStatusItem() {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         item.button?.toolTip = "AutoRPF"
-        let image = NSImage(systemSymbolName: "arrow.left.arrow.right.circle", accessibilityDescription: "AutoRPF")
+        let image = NSImage(systemSymbolName: "arrow.left.arrow.right.circle.fill", accessibilityDescription: "AutoRPF")
         image?.isTemplate = true
         image?.size = NSSize(width: 18, height: 18)
         item.button?.image = image
