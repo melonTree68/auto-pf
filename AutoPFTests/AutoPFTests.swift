@@ -65,7 +65,7 @@ final class AutoPFTests: XCTestCase {
 
         XCTAssertEqual(
             SSHCommandBuilder.arguments(target: target, ports: ports, forwardingMode: .remote),
-            ["-N", "-R", "127.0.0.1:9000:127.0.0.1:7890", "-p", "2222", "deploy@example.com"]
+            ["-N", "-R", "9000:127.0.0.1:7890", "-p", "2222", "deploy@example.com"]
         )
     }
 
@@ -75,7 +75,7 @@ final class AutoPFTests: XCTestCase {
 
         XCTAssertEqual(
             SSHCommandBuilder.arguments(target: target, ports: ports, forwardingMode: .remote),
-            ["-N", "-R", "127.0.0.1:7890:127.0.0.1:7890", "lab"]
+            ["-N", "-R", "7890:127.0.0.1:7890", "lab"]
         )
     }
 
@@ -85,7 +85,7 @@ final class AutoPFTests: XCTestCase {
 
         XCTAssertEqual(
             SSHCommandBuilder.arguments(target: target, ports: ports, forwardingMode: .local),
-            ["-N", "-L", "127.0.0.1:7890:127.0.0.1:9000", "lab"]
+            ["-N", "-L", "7890:127.0.0.1:9000", "lab"]
         )
     }
 }

@@ -5,8 +5,8 @@
 AutoPF is a small macOS menu bar app for starting and stopping an SSH port forwarding tunnel.
 
 ```bash
-ssh -N -R 127.0.0.1:<remote-port>:127.0.0.1:<local-port> <target>
-ssh -N -L 127.0.0.1:<local-port>:127.0.0.1:<remote-port> <target>
+ssh -N -R <remote-port>:127.0.0.1:<local-port> <target>
+ssh -N -L <local-port>:127.0.0.1:<remote-port> <target>
 ```
 
 It is useful when you often need the same port forwarding tunnel and want simple menu bar controls instead of typing the SSH command each time.

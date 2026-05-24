@@ -11,7 +11,6 @@
 - [x] Optionally show the running target name in the menu bar.
 - [x] Toggle launch at login through `SMAppService`.
 - [x] Show a Dock icon while Settings is open, then return to menu-bar-only mode.
-- [x] Store generated AppIcon assets in `Assets.xcassets`.
 
 ## Future Ideas
 

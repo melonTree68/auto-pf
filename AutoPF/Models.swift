@@ -83,9 +83,9 @@ enum SSHCommandBuilder {
         let forwarding: String
         switch forwardingMode {
         case .remote:
-            forwarding = "127.0.0.1:\(ports.remotePort):127.0.0.1:\(ports.localPort)"
+            forwarding = "\(ports.remotePort):127.0.0.1:\(ports.localPort)"
         case .local:
-            forwarding = "127.0.0.1:\(ports.localPort):127.0.0.1:\(ports.remotePort)"
+            forwarding = "\(ports.localPort):127.0.0.1:\(ports.remotePort)"
         }
         var arguments = ["-N", forwardingMode.rawValue, forwarding]
 
