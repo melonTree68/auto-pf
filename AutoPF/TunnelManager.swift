@@ -21,7 +21,7 @@ final class TunnelManager: @unchecked Sendable {
         self.sshPath = sshPath
     }
 
-    func start(target: TunnelTarget, ports: PortSettings) {
+    func start(target: TunnelTarget, ports: PortSettings, forwardingMode: ForwardingMode) {
         guard target.isRunnable else {
             state = .failed(message: "SSH target is not configured.")
             return
@@ -31,7 +31,7 @@ final class TunnelManager: @unchecked Sendable {
 
         let process = Process()
         process.executableURL = URL(fileURLWithPath: sshPath)
-        process.arguments = SSHCommandBuilder.arguments(target: target, ports: ports)
+        process.arguments = SSHCommandBuilder.arguments(target: target, ports: ports, forwardingMode: forwardingMode)
         process.standardOutput = Pipe()
         process.standardError = Pipe()
 
@@ -74,12 +74,12 @@ final class TunnelManager: @unchecked Sendable {
         state = .stopped
     }
 
-    func toggle(target: TunnelTarget, ports: PortSettings) {
+    func toggle(target: TunnelTarget, ports: PortSettings, forwardingMode: ForwardingMode) {
         switch state {
         case .running:
             stop()
         case .stopped, .failed:
-            start(target: target, ports: ports)
+            start(target: target, ports: ports, forwardingMode: forwardingMode)
         }
     }
 }

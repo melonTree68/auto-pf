@@ -14,7 +14,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
     private let localPortField = NSTextField()
     private let remotePortField = NSTextField()
     private let syncPortsButton = NSButton(checkboxWithTitle: "Sync ports", target: nil, action: nil)
-    private let launchAtLoginButton = NSButton(checkboxWithTitle: "Open AutoRPF at login", target: nil, action: nil)
+    private let launchAtLoginButton = NSButton(checkboxWithTitle: "Open AutoPF at login", target: nil, action: nil)
     private let showRunningTargetButton = NSButton(checkboxWithTitle: "Show running target in menu bar", target: nil, action: nil)
     private let customHostField = NSTextField()
     private let customUserField = NSTextField()
@@ -29,7 +29,7 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
             backing: .buffered,
             defer: false
         )
-        window.title = "AutoRPF Settings"
+        window.title = "AutoPF Settings"
         window.center()
         super.init(window: window)
         window.delegate = self
@@ -56,10 +56,10 @@ final class SettingsWindowController: NSWindowController, NSWindowDelegate, NSTe
     private func buildUI() {
         guard let contentView = window?.contentView else { return }
 
-        let title = NSTextField(labelWithString: "AutoRPF")
+        let title = NSTextField(labelWithString: "AutoPF")
         title.font = .boldSystemFont(ofSize: 18)
 
-        let subtitle = NSTextField(labelWithString: "Reverse SSH tunnel settings")
+        let subtitle = NSTextField(labelWithString: "SSH tunnel settings")
         subtitle.textColor = .secondaryLabelColor
 
         let localLabel = NSTextField(labelWithString: "Local port")

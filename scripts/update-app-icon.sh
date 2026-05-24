@@ -17,7 +17,7 @@ if [ ! -f "$source_image" ]; then
 fi
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-icon_dir="$repo_root/AutoRPF/Assets.xcassets/AppIcon.appiconset"
+icon_dir="$repo_root/AutoPF/Assets.xcassets/AppIcon.appiconset"
 
 sips -z 1024 1024 "$source_image" --out "$icon_dir/icon-1024.png" >/dev/null
 sips -z 512 512 "$icon_dir/icon-1024.png" --out "$icon_dir/icon-512.png" >/dev/null

@@ -33,8 +33,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
 
     private func configureStatusItem() {
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        item.button?.toolTip = "AutoRPF"
-        let image = NSImage(systemSymbolName: "arrow.left.arrow.right.circle.fill", accessibilityDescription: "AutoRPF")
+        item.button?.toolTip = "AutoPF"
+        let image = NSImage(systemSymbolName: "arrow.left.arrow.right.circle.fill", accessibilityDescription: "AutoPF")
         image?.isTemplate = true
         image?.size = NSSize(width: 18, height: 18)
         item.button?.image = image
@@ -61,6 +61,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         menu.addItem(toggleItem)
 
         menu.addItem(.separator())
+        let forwardingModeItem = NSMenuItem(title: "Forwarding Mode", action: nil, keyEquivalent: "")
+        forwardingModeItem.submenu = buildForwardingModeMenu()
+        menu.addItem(forwardingModeItem)
+
+        menu.addItem(.separator())
         let targetsItem = NSMenuItem(title: "SSH Targets", action: nil, keyEquivalent: "")
         targetsItem.submenu = buildTargetsMenu()
         menu.addItem(targetsItem)
@@ -70,11 +75,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         settingsItem.target = self
         menu.addItem(settingsItem)
 
-        let quitItem = NSMenuItem(title: "Quit AutoRPF", action: #selector(quit), keyEquivalent: "q")
+        let quitItem = NSMenuItem(title: "Quit AutoPF", action: #selector(quit), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
 
         statusItem?.menu = menu
+    }
+
+    private func buildForwardingModeMenu() -> NSMenu {
+        let menu = NSMenu()
+        let choices: [(String, ForwardingMode)] = [
+            ("Remote (-R)", .remote),
+            ("Local (-L)", .local)
+        ]
+
+        for (title, mode) in choices {
+            let item = NSMenuItem(title: title, action: #selector(selectForwardingMode(_:)), keyEquivalent: "")
+            item.target = self
+            item.representedObject = mode.rawValue
+            item.state = store.forwardingMode == mode ? .on : .off
+            menu.addItem(item)
+        }
+
+        return menu
     }
 
     private func buildTargetsMenu() -> NSMenu {
@@ -160,7 +183,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
 
     private var portTitle: String {
         let ports = store.portSettings
-        return "Remote \(ports.remotePort) -> Local \(ports.localPort)"
+        switch store.forwardingMode {
+        case .remote:
+            return "Remote \(ports.remotePort) -> Local \(ports.localPort)"
+        case .local:
+            return "Local \(ports.localPort) -> Remote \(ports.remotePort)"
+        }
     }
 
     private var customTargetTitle: String {
@@ -173,8 +201,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         if isRunning {
             tunnelManager.stop()
         } else {
-            tunnelManager.start(target: currentTarget, ports: store.portSettings)
+            tunnelManager.start(target: currentTarget, ports: store.portSettings, forwardingMode: store.forwardingMode)
         }
+    }
+
+    @objc private func selectForwardingMode(_ sender: NSMenuItem) {
+        guard let rawValue = sender.representedObject as? String,
+              let mode = ForwardingMode(rawValue: rawValue),
+              mode != store.forwardingMode else {
+            return
+        }
+        store.forwardingMode = mode
+        if isRunning {
+            tunnelManager.start(target: currentTarget, ports: store.portSettings, forwardingMode: mode)
+        }
+        rebuildMenu()
     }
 
     @objc private func selectConfigTarget(_ sender: NSMenuItem) {
@@ -182,7 +223,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
         store.selectedTargetKind = "config"
         store.selectedTargetAlias = alias
         if isRunning {
-            tunnelManager.start(target: currentTarget, ports: store.portSettings)
+            tunnelManager.start(target: currentTarget, ports: store.portSettings, forwardingMode: store.forwardingMode)
         }
         rebuildMenu()
     }
@@ -190,7 +231,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, SettingsWindowControll
     @objc private func selectCustomTarget() {
         store.selectedTargetKind = "custom"
         if isRunning {
-            tunnelManager.start(target: currentTarget, ports: store.portSettings)
+            tunnelManager.start(target: currentTarget, ports: store.portSettings, forwardingMode: store.forwardingMode)
         }
         rebuildMenu()
     }

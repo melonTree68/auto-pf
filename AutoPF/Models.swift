@@ -73,10 +73,21 @@ struct PortSettings: Equatable {
     }
 }
 
+enum ForwardingMode: String, Equatable {
+    case remote = "-R"
+    case local = "-L"
+}
+
 enum SSHCommandBuilder {
-    static func arguments(target: TunnelTarget, ports: PortSettings) -> [String] {
-        let forwarding = "127.0.0.1:\(ports.remotePort):127.0.0.1:\(ports.localPort)"
-        var arguments = ["-N", "-R", forwarding]
+    static func arguments(target: TunnelTarget, ports: PortSettings, forwardingMode: ForwardingMode) -> [String] {
+        let forwarding: String
+        switch forwardingMode {
+        case .remote:
+            forwarding = "127.0.0.1:\(ports.remotePort):127.0.0.1:\(ports.localPort)"
+        case .local:
+            forwarding = "127.0.0.1:\(ports.localPort):127.0.0.1:\(ports.remotePort)"
+        }
+        var arguments = ["-N", forwardingMode.rawValue, forwarding]
 
         switch target {
         case .config(let config):

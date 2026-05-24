@@ -14,8 +14,8 @@
 		1A0000010000000000000005 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000005 /* SettingsStore.swift */; };
 		1A0000010000000000000006 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000006 /* SettingsWindowController.swift */; };
 		1A0000010000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000007 /* Assets.xcassets */; };
-		1A0000010000000000000008 /* AutoRPFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000008 /* AutoRPFTests.swift */; };
-		1A0000010000000000000009 /* AutoRPF.app in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0000210000000000000001 /* AutoRPF.app */; };
+		1A0000010000000000000008 /* AutoPFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000008 /* AutoPFTests.swift */; };
+		1A0000010000000000000009 /* AutoPF.app in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A0000210000000000000001 /* AutoPF.app */; };
 		1A0000010000000000000010 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000110000000000000010 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +25,7 @@
 			containerPortal = 1A0000310000000000000001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1A0000410000000000000001;
-			remoteInfo = AutoRPF;
+			remoteInfo = AutoPF;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -37,11 +37,11 @@
 		1A0000110000000000000005 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		1A0000110000000000000006 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		1A0000110000000000000007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1A0000110000000000000008 /* AutoRPFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoRPFTests.swift; sourceTree = "<group>"; };
+		1A0000110000000000000008 /* AutoPFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPFTests.swift; sourceTree = "<group>"; };
 		1A0000110000000000000009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A0000110000000000000010 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		1A0000210000000000000001 /* AutoRPF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoRPF.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A0000210000000000000002 /* AutoRPFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoRPFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0000210000000000000001 /* AutoPF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoPF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0000210000000000000002 /* AutoPFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoPFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0000010000000000000009 /* AutoRPF.app in Frameworks */,
+				1A0000010000000000000009 /* AutoPF.app in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,13 +66,13 @@
 		1A0000610000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				1A0000610000000000000002 /* AutoRPF */,
-				1A0000610000000000000003 /* AutoRPFTests */,
+				1A0000610000000000000002 /* AutoPF */,
+				1A0000610000000000000003 /* AutoPFTests */,
 				1A0000610000000000000004 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		1A0000610000000000000002 /* AutoRPF */ = {
+		1A0000610000000000000002 /* AutoPF */ = {
 			isa = PBXGroup;
 			children = (
 				1A0000110000000000000001 /* AppDelegate.swift */,
@@ -85,22 +85,22 @@
 				1A0000110000000000000007 /* Assets.xcassets */,
 				1A0000110000000000000009 /* Info.plist */,
 			);
-			path = AutoRPF;
+			path = AutoPF;
 			sourceTree = "<group>";
 		};
-		1A0000610000000000000003 /* AutoRPFTests */ = {
+		1A0000610000000000000003 /* AutoPFTests */ = {
 			isa = PBXGroup;
 			children = (
-				1A0000110000000000000008 /* AutoRPFTests.swift */,
+				1A0000110000000000000008 /* AutoPFTests.swift */,
 			);
-			path = AutoRPFTests;
+			path = AutoPFTests;
 			sourceTree = "<group>";
 		};
 		1A0000610000000000000004 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A0000210000000000000001 /* AutoRPF.app */,
-				1A0000210000000000000002 /* AutoRPFTests.xctest */,
+				1A0000210000000000000001 /* AutoPF.app */,
+				1A0000210000000000000002 /* AutoPFTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A0000410000000000000001 /* AutoRPF */ = {
+		1A0000410000000000000001 /* AutoPF */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A0000710000000000000001 /* Build configuration list for PBXNativeTarget "AutoRPF" */;
+			buildConfigurationList = 1A0000710000000000000001 /* Build configuration list for PBXNativeTarget "AutoPF" */;
 			buildPhases = (
 				1A0000810000000000000001 /* Sources */,
 				1A0000510000000000000001 /* Frameworks */,
@@ -120,14 +120,14 @@
 			);
 			dependencies = (
 			);
-			name = AutoRPF;
-			productName = AutoRPF;
-			productReference = 1A0000210000000000000001 /* AutoRPF.app */;
+			name = AutoPF;
+			productName = AutoPF;
+			productReference = 1A0000210000000000000001 /* AutoPF.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1A0000410000000000000002 /* AutoRPFTests */ = {
+		1A0000410000000000000002 /* AutoPFTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A0000710000000000000002 /* Build configuration list for PBXNativeTarget "AutoRPFTests" */;
+			buildConfigurationList = 1A0000710000000000000002 /* Build configuration list for PBXNativeTarget "AutoPFTests" */;
 			buildPhases = (
 				1A0000810000000000000002 /* Sources */,
 				1A0000510000000000000002 /* Frameworks */,
@@ -138,9 +138,9 @@
 			dependencies = (
 				1A0000A10000000000000001 /* PBXTargetDependency */,
 			);
-			name = AutoRPFTests;
-			productName = AutoRPFTests;
-			productReference = 1A0000210000000000000002 /* AutoRPFTests.xctest */;
+			name = AutoPFTests;
+			productName = AutoPFTests;
+			productReference = 1A0000210000000000000002 /* AutoPFTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -162,7 +162,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1A0000710000000000000003 /* Build configuration list for PBXProject "AutoRPF" */;
+			buildConfigurationList = 1A0000710000000000000003 /* Build configuration list for PBXProject "AutoPF" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -175,8 +175,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A0000410000000000000001 /* AutoRPF */,
-				1A0000410000000000000002 /* AutoRPFTests */,
+				1A0000410000000000000001 /* AutoPF */,
+				1A0000410000000000000002 /* AutoPFTests */,
 			);
 		};
 /* End PBXProject section */
@@ -218,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A0000010000000000000008 /* AutoRPFTests.swift in Sources */,
+				1A0000010000000000000008 /* AutoPFTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +227,7 @@
 /* Begin PBXTargetDependency section */
 		1A0000A10000000000000001 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1A0000410000000000000001 /* AutoRPF */;
+			target = 1A0000410000000000000001 /* AutoPF */;
 			targetProxy = 1A0000020000000000000001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -344,13 +344,13 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = AutoRPF/Info.plist;
+				INFOPLIST_FILE = AutoPF/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoRPF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoPF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -368,13 +368,13 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = AutoRPF/Info.plist;
+				INFOPLIST_FILE = AutoPF/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoRPF;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoPF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -394,10 +394,10 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoRPFTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoPFTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutoRPF.app/Contents/MacOS/AutoRPF";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutoPF.app/Contents/MacOS/AutoPF";
 			};
 			name = Debug;
 		};
@@ -414,17 +414,17 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoRPFTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhijiechen.AutoPFTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutoRPF.app/Contents/MacOS/AutoRPF";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AutoPF.app/Contents/MacOS/AutoPF";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A0000710000000000000001 /* Build configuration list for PBXNativeTarget "AutoRPF" */ = {
+		1A0000710000000000000001 /* Build configuration list for PBXNativeTarget "AutoPF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A0000B10000000000000003 /* Debug */,
@@ -433,7 +433,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A0000710000000000000002 /* Build configuration list for PBXNativeTarget "AutoRPFTests" */ = {
+		1A0000710000000000000002 /* Build configuration list for PBXNativeTarget "AutoPFTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A0000B10000000000000005 /* Debug */,
@@ -442,7 +442,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A0000710000000000000003 /* Build configuration list for PBXProject "AutoRPF" */ = {
+		1A0000710000000000000003 /* Build configuration list for PBXProject "AutoPF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A0000B10000000000000001 /* Debug */,

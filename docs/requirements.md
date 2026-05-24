@@ -1,9 +1,10 @@
-# AutoRPF Requirements
+# AutoPF Requirements
 
 ## Current Scope
 
 - [x] Native macOS menu bar app using Swift/AppKit.
-- [x] Start and stop one reverse SSH tunnel at a time.
+- [x] Start and stop one SSH port forwarding tunnel at a time.
+- [x] Switch between persisted remote (`-R`, default) and local (`-L`) forwarding modes from the menu bar.
 - [x] Discover SSH targets from `~/.ssh/config`.
 - [x] Provide a Custom SSH target option.
 - [x] Edit local and remote ports, with optional sync.

@@ -1,9 +1,9 @@
 import XCTest
-@testable import AutoRPF
+@testable import AutoPF
 
-final class AutoRPFTests: XCTestCase {
+final class AutoPFTests: XCTestCase {
     func testShowRunningTargetInMenuBarDefaultsToFalseAndPersists() {
-        let suiteName = "AutoRPFTests-\(UUID().uuidString)"
+        let suiteName = "AutoPFTests-\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suiteName)!
         defer { defaults.removePersistentDomain(forName: suiteName) }
 
@@ -14,6 +14,20 @@ final class AutoRPFTests: XCTestCase {
         store = SettingsStore(defaults: defaults)
 
         XCTAssertTrue(store.showRunningTargetInMenuBar)
+    }
+
+    func testForwardingModeDefaultsToRemoteAndPersists() {
+        let suiteName = "AutoPFTests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suiteName)!
+        defer { defaults.removePersistentDomain(forName: suiteName) }
+
+        var store = SettingsStore(defaults: defaults)
+        XCTAssertEqual(store.forwardingMode, .remote)
+
+        store.forwardingMode = .local
+        store = SettingsStore(defaults: defaults)
+
+        XCTAssertEqual(store.forwardingMode, .local)
     }
 
     func testSSHConfigParserSkipsPatternsAndKeepsConcreteAliases() {
@@ -50,7 +64,7 @@ final class AutoRPFTests: XCTestCase {
         let ports = PortSettings(localPort: 7890, remotePort: 9000, syncPorts: false)
 
         XCTAssertEqual(
-            SSHCommandBuilder.arguments(target: target, ports: ports),
+            SSHCommandBuilder.arguments(target: target, ports: ports, forwardingMode: .remote),
             ["-N", "-R", "127.0.0.1:9000:127.0.0.1:7890", "-p", "2222", "deploy@example.com"]
         )
     }
@@ -60,8 +74,18 @@ final class AutoRPFTests: XCTestCase {
         let ports = PortSettings(localPort: 7890, remotePort: 7890, syncPorts: true)
 
         XCTAssertEqual(
-            SSHCommandBuilder.arguments(target: target, ports: ports),
+            SSHCommandBuilder.arguments(target: target, ports: ports, forwardingMode: .remote),
             ["-N", "-R", "127.0.0.1:7890:127.0.0.1:7890", "lab"]
+        )
+    }
+
+    func testLocalForwardingArgumentsUseLocalListenPort() {
+        let target = TunnelTarget.config(SSHConfigTarget(alias: "lab", hostName: nil, user: nil, port: nil))
+        let ports = PortSettings(localPort: 7890, remotePort: 9000, syncPorts: false)
+
+        XCTAssertEqual(
+            SSHCommandBuilder.arguments(target: target, ports: ports, forwardingMode: .local),
+            ["-N", "-L", "127.0.0.1:7890:127.0.0.1:9000", "lab"]
         )
     }
 }

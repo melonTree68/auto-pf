@@ -11,6 +11,7 @@ final class SettingsStore {
         static let selectedTargetAlias = "selectedTargetAlias"
         static let selectedTargetKind = "selectedTargetKind"
         static let showRunningTargetInMenuBar = "showRunningTargetInMenuBar"
+        static let forwardingMode = "forwardingMode"
     }
 
     private let defaults: UserDefaults
@@ -69,5 +70,16 @@ final class SettingsStore {
     var showRunningTargetInMenuBar: Bool {
         get { defaults.bool(forKey: Key.showRunningTargetInMenuBar) }
         set { defaults.set(newValue, forKey: Key.showRunningTargetInMenuBar) }
+    }
+
+    var forwardingMode: ForwardingMode {
+        get {
+            guard let rawValue = defaults.string(forKey: Key.forwardingMode),
+                  let mode = ForwardingMode(rawValue: rawValue) else {
+                return .remote
+            }
+            return mode
+        }
+        set { defaults.set(newValue.rawValue, forKey: Key.forwardingMode) }
     }
 }

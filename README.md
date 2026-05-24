@@ -1,14 +1,15 @@
-# AutoRPF
+# AutoPF
 
-![AutoRPF app icon](AutoRPF/Assets.xcassets/AppIcon.appiconset/icon-128.png)
+![AutoPF app icon](AutoPF/Assets.xcassets/AppIcon.appiconset/icon-128.png)
 
-AutoRPF is a small macOS menu bar app for starting and stopping a reverse SSH port forwarding tunnel.
+AutoPF is a small macOS menu bar app for starting and stopping an SSH port forwarding tunnel.
 
 ```bash
 ssh -N -R 127.0.0.1:<remote-port>:127.0.0.1:<local-port> <target>
+ssh -N -L 127.0.0.1:<local-port>:127.0.0.1:<remote-port> <target>
 ```
 
-It is useful when you often need the same remote port forward and want a simple menu bar switch instead of typing the SSH command each time.
+It is useful when you often need the same port forwarding tunnel and want simple menu bar controls instead of typing the SSH command each time.
 
 ## Requirements
 
@@ -16,7 +17,8 @@ It is useful when you often need the same remote port forward and want a simple 
 
 ## What It Does
 
-- Starts or stops one active reverse SSH tunnel.
+- Starts or stops one active SSH tunnel.
+- Switches between remote forwarding (`-R`, the default) and local forwarding (`-L`) from the menu bar and remembers the selection.
 - Reads SSH targets from `~/.ssh/config`.
 - Supports a custom SSH target.
 - Lets you edit local and remote ports, with optional port sync.
@@ -29,4 +31,4 @@ It is useful when you often need the same remote port forward and want a simple 
 make build-release
 ```
 
-After launch, AutoRPF appears in the macOS menu bar.
+After launch, AutoPF appears in the macOS menu bar.
